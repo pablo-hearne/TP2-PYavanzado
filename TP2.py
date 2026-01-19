@@ -121,3 +121,33 @@ def Textual_analysis(text:str) -> dict:
     words_and_characters["Amount of words"] = len(text.split(" "))
     words_and_characters["Total characters"] = len(text)
     return words_and_characters
+
+
+
+"""
+Ejercicio 5: Generador de Números Primos
+
+Escribe una función que genere una lista de números primos hasta un número dado.
+
+Requisitos:
+    -La función debe recibir un número entero positivo.
+    -Debe retornar una lista con todos los números primos hasta ese número.
+    -Incluye en el docstring una explicación sobre qué es un número primo.
+"""
+
+
+def Prime_number_generator(n:int) -> list:
+    """
+    
+    
+    :param number: Description
+    :type number: int
+    :return: Description
+    :rtype: list[Any]
+    """
+    if n <= 1:
+        print("Por favor ingrese un valor válido (mayor a 1)")
+        return []
+    return [((i*0.5)+1) for i in range(n)] #nada q ver no
+
+print(Prime_number_generator(4))
