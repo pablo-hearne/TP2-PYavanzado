@@ -64,7 +64,7 @@ def Temperature_converter(degrees:float,origin:str,destiny:str) -> float:
         return ((degrees - 32)*(5/9))
     else:
         print("La función no está preparado para recibir unidades distintas a 'CELSIUS' o 'FARENHEIT'")
-    return 
+    return degrees
 
 
 
@@ -134,20 +134,114 @@ Requisitos:
     -Debe retornar una lista con todos los números primos hasta ese número.
     -Incluye en el docstring una explicación sobre qué es un número primo.
 """
+import math
 
-
-def Prime_number_generator(n:int) -> list:
-    """
+def is_prime(n):
+    """Check if a number is prime using trial division up to the square root.
+    A prime number is such that it's only divisable by 1 and itself
+    :param n: the number to check if it's prime
+    :type n: int
+    :return: Boolean value (True if prime, False if it's not)
     
-    
-    :param number: Description
-    :type number: int
-    :return: Description
-    :rtype: list[Any]
     """
     if n <= 1:
-        print("Por favor ingrese un valor válido (mayor a 1)")
-        return []
-    return [((i*0.5)+1) for i in range(n)] #nada q ver no
+        return False
+    for i in range(2, int(math.sqrt(n)) + 1):
+        if n % i == 0:
+            return False
+    return True
 
-print(Prime_number_generator(4))
+def Prime_number_generator_user(n:int) -> list[int]:
+    """
+    Prime number generator, gives back a list with all the prime numberes up until the number given.
+    :param number: The amount of prime numbers needed in the list
+    :type number: int
+    :return: The list containing all the prime numbers up until the number solicited
+    :rtype: list[int]
+    """
+    return [i for i in range(n) if is_prime(i)]
+
+
+# print(Prime_number_generator_user(10))
+
+
+"""
+Ejercicio 6: Gestión de Inventario
+
+Crea una función que actualice el inventario de una tienda.
+
+Requisitos:
+    -La función debe recibir un diccionario representando el inventario y una lista de productos vendidos.
+    -Debe actualizar las cantidades en el inventario y retornar el inventario actualizado.
+    -Incluye en el docstring un ejemplo de entrada y salida.
+"""
+present_products = {"Pipetas pulgas":5 ,"Paradiarreas":7, "Pet90": 10,"Correas":20 }
+sold_products = list(present_products.keys())
+
+
+
+def Inventory(present_products:dict[str,int],sold_products:list[str]) -> dict[str,int]:
+    """
+    Actualizes the amount of a product present in the inventory
+
+    :param present_products: The products present in the inventory
+    :type present_products: dict
+    :param sold_products: The products that have been sold and need antualization
+    :type sold_products: list
+    :return: The actualized dictionary, hence the actualized inventory
+    :rtype: dict[str, int]:
+
+    Examples:
+    >>> present_products = {"Pipetas pulgas":5 ,"Paradiarreas":7, "Pet90": 10,"Correas":20 }
+    >>> sold_products = list(present_products.keys())
+    >>> Inventory(present_products,sold_products)
+    {'Pipetas pulgas': 4, 'Paradiarreas': 6, 'Pet90': 9, 'Correas': 19}
+    """
+    for product in sold_products:
+        present_products[product] -= 1
+    return present_products
+
+
+# print(present_products)
+# print(Inventory(present_products,sold_products))
+
+
+"""
+Ejercicio 7: Validación de Contraseñas
+Escriba un programa de Python para convertir una lista de string en 
+una nueva lista con listas de caracteres utilizando map.
+Requisitos:
+input : ["hola","adios"]
+output: [["h","o","l","a"] , ["a","d","i","o","s"]]
+"""
+
+input = ["hola","adios"]
+output_example = [["h","o","l","a"] , ["a","d","i","o","s"]]
+
+def Password_validator(input:list[str]) -> list[list[str]]:
+    """
+    A simple function that transform a list of strings into a list of list containing each character    
+    :param input: The list containing the strings 
+    :type input: list[str]
+    :return: The list of lists containing each character from the aforementioned strings
+    :rtype: list[list[str]]
+    """
+    # output = []
+    # for word in input:
+    #     temporary_list = list(map(str,word))
+    #     output.append(temporary_list)
+    return [list(map(str,word)) for word in input]
+
+
+
+# print(Password_validator(input))
+
+
+"""
+Ejercicio 8: Cálculo de Estadísticas
+Crea una función que calcule la media, mediana y moda de una lista de números.
+Requisitos:
+La función debe recibir una lista de números.
+Debe retornar un diccionario con la media, mediana y moda.
+Incluye en el docstring una explicación de cada estadística y un ejemplo de uso.
+"""
