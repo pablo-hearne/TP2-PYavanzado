@@ -241,7 +241,33 @@ def Password_validator(input:list[str]) -> list[list[str]]:
 Ejercicio 8: Cálculo de Estadísticas
 Crea una función que calcule la media, mediana y moda de una lista de números.
 Requisitos:
-La función debe recibir una lista de números.
-Debe retornar un diccionario con la media, mediana y moda.
-Incluye en el docstring una explicación de cada estadística y un ejemplo de uso.
+    -La función debe recibir una lista de números.
+    -Debe retornar un diccionario con la media, mediana y moda.
+    -Incluye en el docstring una explicación de cada estadística y un ejemplo de uso.
 """
+def Average_median_mode(numbers:list[float])->dict[str,Any]:
+    """
+    Gives back the different values of average, median and mode of a list of numbers.\n
+     - Average: the sum of all numbers, divided by the amount of numbers present in the list \n
+     - Median: the middle value in a list of numbers when they're arranged in order \n
+     - Mode: the number that is repeated the most in a list of numbers 
+
+    :param numbers: The list of numbers
+    :type numbers: list[float]
+    :return: The dictionary containing the solicited information
+    :rtype: dict[str, Any]:
+
+    
+
+    - Example:
+     >>> numbers = [1,1,1,2,3,4,4,4,5] 
+     >>> Average_median_mode(numbers)
+     {"Median": 3, "Average":2.7 ,"Mode":[1,4]}
+    """
+    import statistics
+    return {"Median": statistics.median(numbers),
+            "Average":statistics.mean(numbers),
+            "Mode":statistics.multimode(numbers)}
+
+
+# print(Average_median_mode([1,1,1,2,3,4,4,4,5]))
